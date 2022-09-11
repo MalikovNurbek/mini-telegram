@@ -1,0 +1,8 @@
+{
+  "eslint.format.enable": false,
+  "eslint.debug": false,
+  "launch": {
+    "configurations": [],
+    "compounds": []
+  }
+}
