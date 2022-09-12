@@ -20,6 +20,7 @@ const useUser = () => {
 
   const [user, setUser] = React.useState(null)
   const [userChats, setUserChats] = React.useState(null)
+  const [sortedUserChats, setSortedUserChats] = React.useState(null)
 
   const get = (accessToken) => {
     const request = getCurrentUser(accessToken)
@@ -63,6 +64,20 @@ const useUser = () => {
     navigate('/auth/signin')
   }
 
+  const onSearch = (e) => {
+    const value = e.target.value.toLowerCase()
+
+    if (!value) return
+
+    setSortedUserChats(userChats.filter(({ owner, chat_member }) =>
+      chat_member.first_name.toLowerCase().includes(value) ||
+      chat_member.last_name.toLowerCase().includes(value) ||
+      chat_member.username.toLowerCase().includes(value) ||
+      owner.first_name.toLowerCase().includes(value) ||
+      owner.last_name.toLowerCase().includes(value) ||
+      owner.username.toLowerCase().includes(value)))
+  }
+
   React.useEffect(() => {
     if (!accessToken) return
 
@@ -72,9 +87,11 @@ const useUser = () => {
   return {
     user,
     userChats,
+    sortedUserChats,
     actions: {
       logout,
       get,
+      onSearch,
     },
   }
 }

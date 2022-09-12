@@ -11,9 +11,11 @@ export const Sidebar = () => {
   const {
     user,
     userChats,
+    sortedUserChats,
     actions: {
       logout,
       get: getCurrentUser,
+      onSearch,
     },
   } = CurrentUser.use()
 
@@ -37,7 +39,7 @@ export const Sidebar = () => {
 
       <div className="flex items-center"
       >
-        <SearchChat />
+        <SearchChat onSearch={onSearch}/>
         <UsersModal
           isLoading={isLoading}
           users={users}
@@ -49,7 +51,7 @@ export const Sidebar = () => {
 
       <ChatList
         user={user}
-        userChats={userChats}
+        userChats={sortedUserChats ? sortedUserChats : userChats}
         chatId={chatId}
       />
       <SignOut logout={logout}/>

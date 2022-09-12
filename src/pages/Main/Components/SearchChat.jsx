@@ -2,7 +2,7 @@ import { Input, InputGroup, InputRightElement } from '@chakra-ui/react'
 import React from 'react'
 import { AiOutlineWechat } from 'react-icons/ai'
 
-export const SearchChat = () => {
+export const SearchChat = ({ onSearch }) => {
   return (
     <InputGroup>
       <InputRightElement
@@ -16,6 +16,7 @@ export const SearchChat = () => {
         placeholder="Поиск чата"
         className="text-center border !border-[#0088CC]"
         colorScheme="telegram"
+        onChange={onSearch}
       />
     </InputGroup>
   )
