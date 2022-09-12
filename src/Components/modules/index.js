@@ -67,7 +67,7 @@ const useUser = () => {
   const onSearch = (e) => {
     const value = e.target.value.toLowerCase()
 
-    if (!value) return
+    if (!value) return setSortedUserChats(nullg)
 
     setSortedUserChats(userChats.filter(({ owner, chat_member }) =>
       chat_member.first_name.toLowerCase().includes(value) ||
